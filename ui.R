@@ -1,5 +1,5 @@
-#ui.R
 library(shiny)
+
 shinyUI(pageWithSidebar(
   headerPanel("CSV Viewer"),
   sidebarPanel(
@@ -17,29 +17,15 @@ shinyUI(pageWithSidebar(
                    'Double Quote'='"',
                    'Single Quote'="'"),
                  'Double Quote'),
-    sliderInput("ordervalue", 
-                "Max order:", 
+    sliderInput("n", 
+                "number of difference:", 
                 value = 5,
                 min = 1, 
-                max = 10, step = 1),
-    sliderInput("at", 
-                "abundance threshold", 
-                value = 0.05,
-                min = 0, 
-                max = 1, step = 0.01),
-    selectInput("dataset", "Choose a dataset:", 
-                choices = c("matrixP","network","Bonferroninetwork","networkanalysis","Bonferroninetworkanalysis")),
-    downloadButton('downloadData', 'Download')
-  ),
+                max = 10, step = 1)
+  )  ,
+  
   mainPanel(
-  tabsetPanel(
-    
-    tabPanel("GCN", tableOutput('content1')),
-    tabPanel("Bonferroninetwork", tableOutput('content2')),
-    tabPanel("networkanalysis", tableOutput('content3')),
-    tabPanel("Bonferroninetworkanalysis", tableOutput('content4'))
+    tableOutput("info")
   )
-)
+  
 ))
-
-
